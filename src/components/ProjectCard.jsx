@@ -2,45 +2,91 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaExternalLinkAlt, FaGithub, FaTimes } from 'react-icons/fa';
-
+import { FaExternalLinkAlt, FaGithub, FaTimes, FaArrowRight } from 'react-icons/fa';
 
 const Card = styled(motion.div)`
-  background: #1A1A2E;
-  padding: 20px;
-  border-radius: 15px;
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
   cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(108, 99, 255, 0.2) 25%,
+      rgba(108, 99, 255, 0.5) 50%,
+      rgba(108, 99, 255, 0.2) 75%,
+      transparent 100%
+    );
+  }
+`;
+
+const ImageContainer = styled.div`
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(108, 99, 255, 0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
-
-  &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(108, 99, 255, 0.3);
-  }
+  height: 200px;
 
   img {
     width: 100%;
-    height: 180px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    transition: transform 0.3s;
-
-   
+    transition: transform 0.5s ease;
   }
 
-  h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #6C63FF;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(26, 26, 46, 0.8) 100%
+    );
   }
+`;
 
-  p {
-    font-size: 1rem;
-    color: #EAEAEA;
-  }
+const CardContent = styled.div`
+  padding: 20px;
+`;
+
+const Title = styled.h3`
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, #6C63FF, #FF6584);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`;
+
+const Description = styled.p`
+  font-size: 1rem;
+  color: #EAEAEA;
+  line-height: 1.6;
+  margin-bottom: 15px;
+`;
+
+const TechTags = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+`;
+
+const Tag = styled(motion.span)`
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 15px;
+  background: rgba(108, 99, 255, 0.1);
+  color: #6C63FF;
+  border: 1px solid rgba(108, 99, 255, 0.3);
 `;
 
 const Modal = styled(motion.div)`
@@ -50,6 +96,7 @@ const Modal = styled(motion.div)`
   width: 100%;
   height: 100%;
   background: rgba(26, 26, 46, 0.95);
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,68 +106,118 @@ const Modal = styled(motion.div)`
 
 const ModalContent = styled(motion.div)`
   background: #2E2E3A;
-  padding: 40px;
-  border-radius: 15px;
-  width: 80%;
-  max-width: 700px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 800px;
   position: relative;
-  color: #EAEAEA;
+  overflow: hidden;
 
-  button {
+  .modal-header {
+    position: relative;
+    height: 250px;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(46, 46, 58, 1) 100%
+      );
+    }
+  }
+
+  .modal-body {
+    padding: 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .close-button {
     position: absolute;
     top: 20px;
     right: 20px;
-    background: #FF6584;
+    background: rgba(255, 101, 132, 0.2);
     border: none;
-    padding: 10px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    cursor: pointer;
-    color: #fff;
-    font-size: 1rem;
-    transition: background 0.3s;
-
-    &:hover {
-      background: #6C63FF;
-    }
-  }
-
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    background: linear-gradient(90deg, #6C63FF, #FF6584);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  p {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-  }
-
-  .technologies {
-    list-style: none;
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #FF6584;
+    z-index: 2;
+    transition: all 0.3s ease;
 
-    li {
-      background: #6C63FF;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 0.9rem;
+    &:hover {
+      background: rgba(255, 101, 132, 0.3);
+      transform: rotate(90deg);
+    }
+  }
+`;
+
+const ProjectLinks = styled.div`
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+`;
+
+const LinkButton = styled(motion.a)`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &.primary {
+    background: #6C63FF;
+    color: white;
+
+    &:hover {
+      background: #5A52CC;
     }
   }
 
-  .links a {
-    margin-right: 15px;
-    font-size: 1.2rem;
-    color: #FF6584;
-    transition: color 0.3s;
+  &.secondary {
+    background: transparent;
+    border: 2px solid #6C63FF;
+    color: #6C63FF;
 
     &:hover {
-      color: #6C63FF;
+      background: rgba(108, 99, 255, 0.1);
     }
+  }
+`;
+
+const ViewMoreButton = styled(motion.button)`
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: #6C63FF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: rgba(108, 99, 255, 0.1);
   }
 `;
 
@@ -130,15 +227,47 @@ const ProjectCard = ({ project }) => {
   return (
     <>
       <Card
-        onClick={() => setIsOpen(true)}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+        whileHover={{ y: -10 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        layout
       >
+        <ImageContainer onClick={() => setIsOpen(true)}>
+          <motion.img
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+            whileHover={{ scale: 1.1 }}
+          />
+        </ImageContainer>
+        
+        <CardContent>
+          <Title>{project.title}</Title>
+          <Description>{project.shortDescription}</Description>
+          
+          <TechTags>
+            {project.technologies.slice(0, 3).map((tech, index) => (
+              <Tag
+                key={index}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {tech}
+              </Tag>
+            ))}
+            {project.technologies.length > 3 && (
+              <Tag>+{project.technologies.length - 3}</Tag>
+            )}
+          </TechTags>
 
-        <img src={project.image} alt={project.title} loading="lazy" />
-
-        <h3>{project.title}</h3>
-        <p>{project.shortDescription}</p>
+          <ViewMoreButton
+            onClick={() => setIsOpen(true)}
+            whileHover={{ x: 5 }}
+          >
+            View Details <FaArrowRight />
+          </ViewMoreButton>
+        </CardContent>
       </Card>
 
       <AnimatePresence>
@@ -150,24 +279,62 @@ const ProjectCard = ({ project }) => {
             onClick={() => setIsOpen(false)}
           >
             <ModalContent
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              transition={{ type: 'spring', stiffness: 300 }}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button onClick={() => setIsOpen(false)}><FaTimes /></button>
-              <h2>{project.title}</h2>
-              <p>{project.description}</p>
-              <h4>Teknologi yang Digunakan:</h4>
-              <ul className="technologies">
-                {project.technologies.map((tech, index) => (
-                  <li key={index}>{tech}</li>
-                ))}
-              </ul>
-              <div className="links">
-                {project.liveDemo && <a href={project.liveDemo} target="_blank" rel="noopener noreferrer"><FaExternalLinkAlt /> Live Demo</a>}
-                {project.repo && <a href={project.repo} target="_blank" rel="noopener noreferrer"><FaGithub /> Repositori</a>}
+              <button className="close-button" onClick={() => setIsOpen(false)}>
+                <FaTimes />
+              </button>
+
+              <div className="modal-header">
+                <img src={project.image} alt={project.title} />
+              </div>
+
+              <div className="modal-body">
+                <Title>{project.title}</Title>
+                <Description>{project.description}</Description>
+
+                <TechTags>
+                  {project.technologies.map((tech, index) => (
+                    <Tag
+                      key={index}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {tech}
+                    </Tag>
+                  ))}
+                </TechTags>
+
+                <ProjectLinks>
+                  {project.liveDemo && (
+                    <LinkButton
+                      href={project.liveDemo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="primary"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FaExternalLinkAlt /> Live Demo
+                    </LinkButton>
+                  )}
+                  {project.repo && (
+                    <LinkButton
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="secondary"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FaGithub /> View Code
+                    </LinkButton>
+                  )}
+                </ProjectLinks>
               </div>
             </ModalContent>
           </Modal>

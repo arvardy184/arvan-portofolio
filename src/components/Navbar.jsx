@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { AnimatePresence, motion } from 'framer-motion';
 
-
 const Nav = styled(motion.nav)`
   position: fixed;
   width: 100%;
@@ -12,63 +11,77 @@ const Nav = styled(motion.nav)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: ${({ scrolled }) => (scrolled ? 'rgba(26, 26, 46, 0.9)' : 'transparent')};
-  backdrop-filter: blur(10px);
+  background: ${({ scrolled }) => (scrolled ? 'rgba(26, 26, 46, 0.95)' : 'transparent')};
+  backdrop-filter: ${({ scrolled }) => (scrolled ? 'blur(10px)' : 'none')};
   z-index: 1000;
+  transition: all 0.3s ease-in-out;
 
-  .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    background: linear-gradient(45deg, #6C63FF, #FF6584);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  @media (max-width: 768px) {
+    padding: 20px 30px;
   }
+`;
 
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 30px;
+const Logo = styled(motion.a)`
+  font-size: 1.8rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #6C63FF, #FF6584);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  text-decoration: none;
+`;
 
-    li {
-      position: relative;
+const NavLinks = styled.ul`
+  list-style: none;
+  display: flex;
+  gap: 30px;
 
-      a {
-        font-size: 1rem;
-        transition: color 0.3s;
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
 
-        &:after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 2px;
-          background: #FF6584;
-          left: 0;
-          bottom: -5px;
-          transition: width 0.3s;
-        }
+const NavItem = styled(motion.li)`
+  position: relative;
 
-        &:hover:after {
-          width: 100%;
-        }
+  a {
+    color: #EAEAEA;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #FF6584;
+      left: 0;
+      bottom: -5px;
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      color: #FF6584;
+      
+      &:after {
+        width: 100%;
       }
     }
   }
+`;
 
-  .hamburger {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
+const HamburgerButton = styled(motion.button)`
+  display: none;
+  background: none;
+  border: none;
+  color: #EAEAEA;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 1001;
 
   @media (max-width: 768px) {
-    .nav-links {
-      display: none;
-    }
-
-    .hamburger {
-      display: block;
-      color: #EAEAEA;
-    }
+    display: block;
   }
 `;
 
@@ -76,82 +89,148 @@ const MobileMenu = styled(motion.div)`
   position: fixed;
   top: 0;
   right: 0;
-  width: 60%;
+  width: 70%;
   height: 100vh;
-  background: #1A1A2E;
+  background: rgba(26, 26, 46, 0.98);
+  backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 40px;
-  z-index: 1500;
+  z-index: 1000;
+  box-shadow: -5px 0px 25px rgba(0, 0, 0, 0.3);
 
   a {
     font-size: 1.5rem;
     color: #EAEAEA;
-    transition: color 0.3s;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
 
     &:hover {
       color: #FF6584;
+      transform: translateX(10px);
     }
   }
+`;
+
+const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 999;
 `;
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleScroll = () => {
-    const offset = window.scrollY;
-    if(offset > 80 ){
-      setScrolled(true);
-    }
-    else{
-      setScrolled(false);
-    }
-  }
-
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 80);
+    };
+
+    window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const menuVariants = {
+    closed: {
+      x: "100%",
+      transition: {
+        type: "tween",
+        duration: 0.3,
+      }
+    },
+    open: {
+      x: 0,
+      transition: {
+        type: "tween",
+        duration: 0.3,
+      }
+    }
+  };
+
+  const navItems = [
+    { title: "Home", href: "#home" },
+    { title: "Proyek", href: "#proyek" },
+    { title: "Keahlian", href: "#keahlian" },
+    { title: "Testimoni", href: "#testimoni" },
+    { title: "Kontak", href: "#kontak" }
+  ];
 
   return (
     <>
       <Nav
-        scrolled={scrolled}
         initial={{ y: -100 }}
-        animate={scrolled ? { y: 0 } : { y: -100 }}
+        animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
+        scrolled={scrolled}
       >
-        <div className="logo">MyPortfolio</div>
-        <ul className="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#projects">Proyek</a></li>
-          <li><a href="#skills">Keahlian</a></li>
-          <li><a href="#testimonials">Testimoni</a></li>
-          <li><a href="#contact">Kontak</a></li>
-        </ul>
-        <div className="hamburger" onClick={() => setIsOpen(true)}>
-          <FaBars />
-        </div>
+        <Logo
+          href="#"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          MyPortfolio
+        </Logo>
+
+        <NavLinks>
+          {navItems.map((item, index) => (
+            <NavItem
+              key={index}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              whileHover={{ y: -2 }}
+            >
+              <a href={item.href}>{item.title}</a>
+            </NavItem>
+          ))}
+        </NavLinks>
+
+        <HamburgerButton
+          whileTap={{ scale: 0.9 }}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <FaTimes /> : <FaBars />}
+        </HamburgerButton>
       </Nav>
 
       <AnimatePresence>
         {isOpen && (
-          <MobileMenu
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', duration: 0.3 }}
-          >
-            <FaTimes size={30} color="#EAEAEA" onClick={() => setIsOpen(false)} style={{ position: 'absolute', top: 20, right: 20, cursor: 'pointer' }} />
-            <a href="#home" onClick={() => setIsOpen(false)}>Home</a>
-            <a href="#projects" onClick={() => setIsOpen(false)}>Proyek</a>
-            <a href="#skills" onClick={() => setIsOpen(false)}>Keahlian</a>
-            <a href="#testimonials" onClick={() => setIsOpen(false)}>Testimoni</a>
-            <a href="#contact" onClick={() => setIsOpen(false)}>Kontak</a>
-          </MobileMenu>
+          <>
+            <Overlay
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+            />
+            <MobileMenu
+              variants={menuVariants}
+              initial="closed"
+              animate="open"
+              exit="closed"
+            >
+              {navItems.map((item, index) => (
+                <motion.a
+                  key={index}
+                  href={item.href}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.title}
+                </motion.a>
+              ))}
+            </MobileMenu>
+          </>
         )}
       </AnimatePresence>
     </>

@@ -1,5 +1,4 @@
 // src/App.jsx
-import React, { Suspense, lazy } from 'react';
 import GlobalStyles from './GlobalStyles';
 import styled from 'styled-components';
 import Header from './components/Header';
