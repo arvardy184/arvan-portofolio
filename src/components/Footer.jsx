@@ -194,7 +194,7 @@ const Footer = () => {
         transition={{ delay: 0.3 }}
         viewport={{ once: true }}
       >
-        © {new Date().getFullYear()} [Nama Anda]. Semua hak dilindungi.
+        © {new Date().getFullYear()} [Arvan Yudhistia Ardana]. Semua hak dilindungi.
       </FooterText>
     </FooterSection>
   );
