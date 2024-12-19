@@ -2,7 +2,7 @@
 const skillsData = [
   {
     id: 1,
-    name: 'React JS',
+    name: 'Flutter',
     proficiency: 90
   },
   {

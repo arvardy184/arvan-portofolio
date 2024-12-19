@@ -15,7 +15,6 @@ const testimonialsData = [
     message: 'Kolaborasi dengan Arvan membuat proyek kami berjalan lancar dan sukses. Dia adalah seorang developer yang handal.',
     author: 'Klien C'
   },
-  // Tambahkan testimoni lainnya sesuai kebutuhan
 ];
 
 export default testimonialsData;
