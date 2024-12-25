@@ -1,28 +1,26 @@
-// src/App.jsx
-import GlobalStyles from './GlobalStyles';
-import styled from 'styled-components';
-import Header from './components/Header';
-import Home from './components/Home';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import Testimonials from './components/Testimonials';
-import Footer from './components/Footer';
+import React from 'react';
 
-const AppContainer = styled.div`
-  overflow-x: hidden;
-`;
+// Komponen yang sudah kita buat
+import TailwindNavbar from './components/TailwindNavbar';
+import TailwindHero from './components/TailwindHero';
+import CustomHero from './components/CustomHero';
+import CustomSkills from './components/CustomSkills';
+import TailwindProjects from './components/TailwindProjects';
+import TailwindTestimonials from './components/TailwindTestimonials';
+import TailwindContact from './components/TailwindContact';
+import TailwindFooter from './components/TailwindFooter';
 
 function App() {
   return (
-    <AppContainer>
-      <GlobalStyles />
-      <Header />
-      <Home />
-      <Projects />
-      <Skills />
-      <Testimonials />
-      <Footer />
-    </AppContainer>
+    <div className="font-sans bg-[#0F0F1A] text-white min-h-screen">
+      <TailwindNavbar />
+      <CustomHero />
+      <TailwindProjects />
+      <CustomSkills />
+      <TailwindTestimonials />
+      <TailwindContact />
+      <TailwindFooter />
+    </div>
   );
 }
 
