@@ -28,7 +28,7 @@ const CustomHero = () => {
   // ---------------------------
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 300], [0, 100]);
+//   const y = useTransform(scrollY, [0, 300], [0, 100]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   // -------------------------------------------------------------------

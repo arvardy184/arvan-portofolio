@@ -2,7 +2,6 @@ import React from 'react';
 
 // Komponen yang sudah kita buat
 import TailwindNavbar from './components/TailwindNavbar';
-import TailwindHero from './components/TailwindHero';
 import CustomHero from './components/CustomHero';
 import CustomSkills from './components/CustomSkills';
 import TailwindProjects from './components/TailwindProjects';

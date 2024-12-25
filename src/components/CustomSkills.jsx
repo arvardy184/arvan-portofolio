@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code, Server, Database, Layout, Cpu, GitBranch } from 'lucide-react';
+import {  Server, Database, Layout, GitBranch } from 'lucide-react';
 
 const skillsList = [
   {
