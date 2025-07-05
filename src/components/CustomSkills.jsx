@@ -75,7 +75,7 @@ const CustomSkills = () => {
         }, delay);
         return () => clearTimeout(timer);
       }
-    }, [isInView, skill.proficiency, delay, progress]);
+    }, [skill.proficiency, delay, progress]);
 
     return (
       <div className="relative">

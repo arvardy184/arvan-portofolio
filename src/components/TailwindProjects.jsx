@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { ExternalLink, Github, Brush, Layers, Code2, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, Layers, Code2, Sparkles } from 'lucide-react';
 import projectsData from '../data/projectsData';
 
 const TailwindProjects = () => {

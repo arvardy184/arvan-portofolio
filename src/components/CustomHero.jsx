@@ -104,15 +104,16 @@ const CustomHero = () => {
       }
     };
 
-    if (heroRef.current) {
-      heroRef.current.addEventListener('mousemove', handleMouseMove);
-      heroRef.current.addEventListener('click', handleMouseClick);
+    const node = heroRef.current;
+    if (node) {
+      node.addEventListener('mousemove', handleMouseMove);
+      node.addEventListener('click', handleMouseClick);
     }
 
     return () => {
-      if (heroRef.current) {
-        heroRef.current.removeEventListener('mousemove', handleMouseMove);
-        heroRef.current.removeEventListener('click', handleMouseClick);
+      if (node) {
+        node.removeEventListener('mousemove', handleMouseMove);
+        node.removeEventListener('click', handleMouseClick);
       }
     };
   }, [springX, springY]);
