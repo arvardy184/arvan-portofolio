@@ -11,7 +11,7 @@ import TailwindFooter from './components/TailwindFooter';
 
 function App() {
   return (
-    <div className="font-sans bg-[#0F0F1A] text-white min-h-screen">
+    <div className="font-sans bg-washi-cream text-stone-900 min-h-screen washi-bg">
       <TailwindNavbar />
       <CustomHero />
       <TailwindProjects />

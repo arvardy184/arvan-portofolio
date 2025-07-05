@@ -1,70 +1,130 @@
-# Getting Started with Create React App
+# 🎌 Neo-Japanese Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> **Portfolio digital yang menggabungkan estetika tradisional Jepang dengan teknologi modern**
 
-## Available Scripts
+## ✨ Unique Features
 
-In the project directory, you can run:
+### 🎨 **Neo-Japanese Design System**
+- **Warm Earth Palette**: Warna-warna natural terinspirasi tradisi Jepang
+- **Typography**: Kombinasi Inter & Playfair Display dengan Noto Japanese fonts
+- **Washi Paper Textures**: Background dengan tekstur kertas tradisional
+- **Zen-inspired Layouts**: Asymmetrical balance dengan negative space mastery
 
-### `npm start`
+### 🌊 **Advanced Animations**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+#### **Hero Section**
+- **Magnetic Text Effect**: Text yang "tertarik" ke cursor movement
+- **Multilingual Typewriter**: Nama dalam 4 bahasa (ID, JP, CN, KR) dengan smooth transitions
+- **Interactive Ink Drops**: Click anywhere untuk efek tinta yang organic
+- **Parallax Floating Elements**: Cherry blossoms, mountains, brush icons
+- **Brush Stroke SVG**: Animated calligraphy paths yang reveal secara bertahap
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+#### **Navigation**
+- **Kanji Integration**: Setiap menu item punya kanji character (家作技声連)
+- **3D Logo Animation**: Logo dengan rotating decorative ring
+- **Zen Hover Effects**: Smooth transitions dengan spring physics
+- **Mobile Menu**: Full-screen overlay dengan Japanese aesthetics
 
-### `npm test`
+### 🚀 **Interactive Elements**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Cursor Followers**: Elements yang bergerak mengikuti mouse
+2. **Spring Animations**: Smooth physics-based movements
+3. **Scroll Parallax**: Multi-layer parallax dengan depth
+4. **Hover Transforms**: 3D card tilts dan magnetic effects
+5. **Loading States**: Zen-inspired spinners dan transitions
 
-### `npm run build`
+### 🛠 **Tech Stack**
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React 19** - Latest framework
+- **Framer Motion 11** - Advanced animations
+- **Tailwind CSS** - Utility-first styling
+- **Lucide React** - Beautiful icons
+- **Custom Design System** - Neo-Japanese components
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🎯 **Design Philosophy**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### **Wabi-Sabi (侘寂)**
+- Imperfect beauty dalam asymmetrical layouts
+- Natural textures dan organic shapes
+- Subtle animations yang tidak overwhelm
 
-### `npm run eject`
+### **Ma (間) - Negative Space**
+- Strategic use of whitespace
+- Breathing room untuk visual hierarchy
+- Clean, uncluttered interfaces
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **Mono no Aware (物の哀れ)**
+- Gentle, ephemeral animations
+- Soft transitions yang emotional
+- Color palettes yang evoke calmness
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🎨 **Color Palette**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```css
+/* Earth Tones */
+earth-500: #b8905a    /* Primary brown */
+earth-700: #8a6543    /* Dark brown */
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+/* Gold Accents */
+gold-500: #d97706     /* Primary gold */
+gold-400: #fbbf24     /* Light gold */
 
-## Learn More
+/* Copper Highlights */
+copper-500: #c2543a   /* Primary copper */
+copper-400: #da6f47   /* Light copper */
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+/* Stone Neutrals */
+stone-600: #57534e    /* Text color */
+stone-900: #1c1917    /* Dark text */
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+/* Washi Backgrounds */
+washi-cream: #fefcf3  /* Base background */
+washi-pearl: #f7f3e9  /* Secondary bg */
+```
 
-### Code Splitting
+## 🚀 **Getting Started**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+# Install dependencies
+npm install
 
-### Analyzing the Bundle Size
+# Start development server
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Build for production
+npm run build
+```
 
-### Making a Progressive Web App
+## 📱 **Responsive Design**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Mobile-first approach** dengan Japanese mobile UI patterns
+- **Touch-friendly interactions** untuk tablet dan mobile
+- **Adaptive layouts** yang maintain aesthetic integrity
+- **Performance optimized** untuk smooth animations di semua device
 
-### Advanced Configuration
+## 🎭 **Component Library**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### **Zen Components**
+- `.zen-card` - Paper-like cards dengan hover effects
+- `.brush-btn` - Gradient buttons dengan brush stroke animations
+- `.calligraphy-heading` - Text dengan shifting gradient colors
+- `.magnetic-text` - Text yang responsive terhadap mouse movement
 
-### Deployment
+### **Utility Classes**
+- `.zen-transition` - Consistent easing curves
+- `.hover-lift` - Subtle hover elevations
+- `.backdrop-paper` - Washi paper backdrop effects
+- `.text-shadow-warm` - Soft shadows untuk depth
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🌸 **Easter Eggs**
 
-### `npm run build` fails to minify
+- **Click anywhere** di hero section untuk ink drop effects
+- **Hover pada kanji** di navbar untuk subtle rotations
+- **Smooth scroll** dengan zen-like easing
+- **Hidden animations** yang trigger pada specific interactions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+**Built with ❤️ and Zen philosophy by Arvan Yudhistia Ardana**
+
+*"道を究める" - Mastering the Way*
