@@ -1,10 +1,10 @@
 import React from 'react';
-import AwwwardsPortfolio from './components/AwwwardsPortfolio';
+import MinimalistPortfolio from './components/MinimalistPortfolio';
 
 function App() {
   return (
-    <div className="font-sans smooth-scroll">
-      <AwwwardsPortfolio />
+    <div className="font-sans antialiased">
+      <MinimalistPortfolio />
     </div>
   );
 }
