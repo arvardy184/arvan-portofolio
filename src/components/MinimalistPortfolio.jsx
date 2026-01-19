@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, useSpring } from 'framer-motion';
 import { ArrowUpRight, Github, Linkedin, Mail, MapPin, Calendar, ExternalLink } from 'lucide-react';
 import projectsData from '../data/projectsData';
 
