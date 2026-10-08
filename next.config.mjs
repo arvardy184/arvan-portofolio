@@ -10,6 +10,7 @@ const nextConfig = {
     unoptimized: true,
   },
   trailingSlash: true,
+  devIndicators: false,
   outputFileTracingRoot: __dirname,
 };
 

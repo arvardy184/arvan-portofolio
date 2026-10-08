@@ -1,35 +1,26 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
+    // "rail" is where the identity frame becomes a fixed left rail.
+    screens: {
+      sm: "480px",
+      md: "768px",
+      rail: "1100px",
+      wide: "1440px",
+    },
     extend: {
       colors: {
-        bg: "var(--color-bg)",
-        surface: "var(--color-surface)",
-        "surface-raised": "var(--color-surface-raised)",
-        border: "var(--color-border)",
-        text: {
-          primary: "var(--color-text-primary)",
-          secondary: "var(--color-text-secondary)",
-        },
-        accent: {
-          DEFAULT: "var(--color-accent)",
-          hover: "var(--color-accent-hover)",
-        },
+        bg: "#0A0A0A",
+        raised: "#141414",
+        ink: "#F5F5F5",
+        dim: "#A6A6A6",
+        rule: "#303030",
+        signal: "#FF2D20",
       },
       fontFamily: {
-        sans: ["var(--font-geist-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
-      },
-      borderRadius: {
-        sm: "var(--radius-sm)",
-        md: "var(--radius-md)",
-        lg: "var(--radius-lg)",
-        pill: "var(--radius-pill)",
-      },
-      maxWidth: {
-        prose: "70ch",
+        sans: ["var(--font-display)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
       },
     },
   },

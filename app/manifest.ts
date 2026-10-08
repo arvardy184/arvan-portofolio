@@ -1,23 +1,17 @@
 import type { MetadataRoute } from "next";
-import { profile, siteConfig } from "@/data/portfolio";
+import { profile, site } from "@/data/collection";
 
 export const dynamic = "force-static";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: siteConfig.title,
+    name: site.title,
     short_name: profile.name,
-    description: siteConfig.description,
+    description: site.description,
     start_url: "/",
-    display: "standalone",
-    background_color: "#0a0a0a",
-    theme_color: "#0a0a0a",
-    icons: [
-      {
-        src: "/favicon.ico",
-        sizes: "48x48",
-        type: "image/x-icon",
-      },
-    ],
+    display: "browser",
+    background_color: "#0A0A0A",
+    theme_color: "#0A0A0A",
+    icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml" }],
   };
 }
